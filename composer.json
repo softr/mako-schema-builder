@@ -1,0 +1,22 @@
+{
+    "name": "softr/mako-schema-builder",
+    "description": "Database Schema Builder package for Mako Framework",
+    "keywords": ["mako", "framework", "database", "schema", "phinx"],
+    "homepage": "https://github.com/softr/mako-schema-builder",
+    "authors": [
+        {
+            "name": "Aldo Anizio Lugão Camacho",
+            "email": "contato@softr.com.br",
+            "homepage": "http://www.softr.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "softr\\MakoSchemaBuilder\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+        "robmorgan/phinx": "dev-master"
+    }
+}
