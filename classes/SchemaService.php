@@ -12,33 +12,19 @@ use \softr\MakoSchemaBuilder\Schema;
 
 
 /**
- * Schema package.
+ * Schema package service.
  *
  * @author     Aldo Anizio Lugão Camacho
  * @copyright  (c) 2016
  */
-class SchemaPackage extends \mako\application\Package
+class SchemaService extends \mako\application\services\Service
 {
-    /**
-     * Package name.
-     *
-     * @var string
-     */
-    protected $packageName = 'softr/mako-schema-builder';
-
-    /**
-     * Package namespace.
-     *
-     * @var string
-     */
-    protected $fileNamespace = 'mako-schema-builder';
-
     /**
      * Register the service.
      *
-     * @access  protected
+     * @access  public
      */
-    protected function bootstrap()
+    public function register()
     {
         $this->container->registerSingleton(['softr\MakoSchemaBuilder\Schema', 'schema'], function($container)
         {

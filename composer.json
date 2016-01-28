@@ -1,5 +1,6 @@
 {
     "name": "softr/mako-schema-builder",
+    "type": "mako-package",
     "description": "Database Schema Builder package for Mako Framework",
     "keywords": ["mako", "framework", "database", "schema", "phinx"],
     "homepage": "https://github.com/softr/mako-schema-builder",
@@ -12,11 +13,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "softr\\MakoSchemaBuilder\\": "src"
+            "softr\\MakoSchemaBuilder\\": "classes"
         }
     },
     "require": {
         "php": ">=5.4",
-        "robmorgan/phinx": "dev-master"
+        "composer/installers": "*",
+        "robmorgan/phinx": "0.3.*"
     }
 }

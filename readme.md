@@ -1,6 +1,6 @@
 # Mako Schema Builder
 
-This is a simple database schema builder package for Mako Framework >=4.5.
+This is a simple database schema builder package for Mako Framework 4.0 and 4.1.
 
 This package runs on top of [Phinx](https://phinx.org/)
 
@@ -9,7 +9,7 @@ This package runs on top of [Phinx](https://phinx.org/)
 Use composer to install. Simply add package to your project.
 
 ```php
-composer require softr/mako-schema-builder:*
+composer require softr/mako-schema-builder:1.*
 ```
 
 So now you can update your project with a single command.
@@ -24,21 +24,13 @@ composer update
 After installing you'll have to register the package in your ``app/config/application.php`` file.
 
 ```
-'packages' =>
+/**
+ + Services to register in the dependecy injection container.
+ */
+'services' =>
 [
     ...
-    'web' =>
-    [
-        ...
-        // Register the package for web app
-        'softr\MakoSchemaBuilder\SchemaPackage',
-    ],
-    'cli' =>
-    [
-        ...
-        // Register the package for command line app
-        'softr\MakoSchemaBuilder\SchemaPackage',
-    ]
+    'softr\MakoSchemaBuilder\SchemaService',
 ],
 ```
 
