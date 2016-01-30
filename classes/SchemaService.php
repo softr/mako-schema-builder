@@ -28,7 +28,7 @@ class SchemaService extends \mako\application\services\Service
     {
         $this->container->registerSingleton(['softr\MakoSchemaBuilder\Schema', 'schema'], function($container)
         {
-            return new Schema($container->get('database'), $container->get('config'));
+            return new Schema($container->get('database'));
         });
     }
 }

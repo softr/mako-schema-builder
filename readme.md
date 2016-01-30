@@ -75,16 +75,16 @@ $this->schema->connection('foo')->create('table', function($table)
 
 ## Renaming / Dropping Tables
 
-To rename an existing database table, use the ``rename`` method:
+To rename an existing database table, use the ``renameTable`` method:
 
 ```php
-$this->schema->rename('from', 'to');
+$this->schema->renameTable('from', 'to');
 ```
 
-To drop an existing table, you may use the drop or dropIfExists methods:
+To drop an existing table, you may use the ``dropTable`` or ``dropIfExists`` methods:
 
 ```php
-$this->schema->drop('users');
+$this->schema->dropTable('users');
 
 $this->schema->dropIfExists('users');
 ```

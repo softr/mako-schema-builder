@@ -19,6 +19,6 @@
     "require": {
         "php": ">=5.4",
         "composer/installers": "*",
-        "robmorgan/phinx": "0.3.*"
+        "robmorgan/phinx": "0.4.0"
     }
 }

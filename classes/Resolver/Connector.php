@@ -12,9 +12,6 @@ use \PDO;
 // Mako
 use mako\database\ConnectionManager;
 
-// Phinx
-use Phinx\Db\Adapter\AdapterFactory;
-
 
 /**
  * Phinx Adapter Connector
@@ -24,6 +21,19 @@ use Phinx\Db\Adapter\AdapterFactory;
  */
 class Connector
 {
+    /**
+     * Class map of database adapters, indexed by PDO::ATTR_DRIVER_NAME.
+     *
+     * @var array
+     */
+    protected $phinxAdapters =
+    [
+        'mysql'  => 'Phinx\Db\Adapter\MysqlAdapter',
+        'pgsql'  => 'Phinx\Db\Adapter\PostgresAdapter',
+        'sqlite' => 'Phinx\Db\Adapter\SQLiteAdapter',
+        'sqlsrv' => 'Phinx\Db\Adapter\SqlServerAdapter',
+    ];
+
     /**
      * Connection name to use.
      *
@@ -43,7 +53,7 @@ class Connector
      *
      * @var array
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * Constructor.
@@ -53,7 +63,7 @@ class Connector
      * @param   array                             $options            (optional) Adapter options
      * @return  void
      */
-    public function __construct(ConnectionManager $connectionManager, $options = [])
+    public function __construct(ConnectionManager $connectionManager, array $options = [])
     {
         $this->connectionManager = $connectionManager;
 
@@ -135,6 +145,25 @@ class Connector
             'name'       => $this->getDatabaseName(),
         ];
 
-        return AdapterFactory::instance()->getAdapter($this->getConnection()->getDriver(), $adapterOptions);
+        $adapterClass = $this->getAdapterClass($this->getConnection()->getDriver());
+
+        return new $adapterClass($adapterOptions);
+    }
+
+    /**
+     * Get an adapter class by name.
+     *
+     * @access  public
+     * @param   string  $name  Adapter name
+     * @return  string
+     */
+    private function getAdapterClass($name)
+    {
+        if(!isset($this->phinxAdapters[$name]) || empty($this->phinxAdapters[$name]))
+        {
+            throw new \RuntimeException(sprintf('Adapter "%s" has not been registered', $name));
+        }
+
+        return $this->phinxAdapters[$name];
     }
 }
