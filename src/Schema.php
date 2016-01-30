@@ -10,7 +10,6 @@ namespace softr\MakoSchemaBuilder;
 use \Closure;
 
 // Mako
-use mako\config\Config;
 use mako\database\ConnectionManager;
 
 
@@ -39,15 +38,10 @@ class Schema
      *
      * @access  public
      * @param   \mako\database\ConnectionManager  $connectionManager  Connection manager instance
-     * @param   \mako\config\Config               $config             Config instance
      */
-    public function __construct(ConnectionManager $connectionManager, Config $config)
+    public function __construct(ConnectionManager $connectionManager)
     {
         $this->connector = new Connector($connectionManager);
-
-        $config = $config->get('mako-schema-builder::config');
-
-        $this->connector->setOptions($config);
     }
 
     //---------------------------------------------
@@ -132,7 +126,7 @@ class Schema
      */
     public function dropTable($table)
     {
-        $this->connector->getAdapter()->dropTable($tableName);
+        $this->connector->getAdapter()->dropTable($table);
     }
 
     /**
@@ -144,7 +138,7 @@ class Schema
     {
         if($this->connector->getAdapter()->hasTable($table))
         {
-            $this->connector->getAdapter()->dropTable($tableName);
+            $this->connector->getAdapter()->dropTable($table);
         }
     }
 

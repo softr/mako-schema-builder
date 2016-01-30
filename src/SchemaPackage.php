@@ -42,7 +42,7 @@ class SchemaPackage extends \mako\application\Package
     {
         $this->container->registerSingleton(['softr\MakoSchemaBuilder\Schema', 'schema'], function($container)
         {
-            return new Schema($container->get('database'), $container->get('config'));
+            return new Schema($container->get('database'));
         });
     }
 }

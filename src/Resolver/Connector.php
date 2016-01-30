@@ -43,7 +43,7 @@ class Connector
      *
      * @var array
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * Constructor.
