@@ -134,7 +134,9 @@ class Connector
             'connection' => $pdo,
             'name'       => $this->getDatabaseName(),
         ];
+        
+        $adapterDrive = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
-        return AdapterFactory::instance()->getAdapter($this->getConnection()->getDriver(), $adapterOptions);
+        return AdapterFactory::instance()->getAdapter($adapterDrive, $adapterOptions);
     }
 }

@@ -17,6 +17,6 @@
     },
     "require": {
         "php": ">=5.4",
-        "robmorgan/phinx": "dev-master"
+        "robmorgan/phinx": "0.8.1"
     }
 }
