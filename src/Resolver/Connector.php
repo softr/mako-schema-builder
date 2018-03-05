@@ -112,7 +112,7 @@ class Connector
 
         $database = $query->fetch();
 
-        return $database['DATABASE()'];
+        return $database->{'DATABASE()'};
     }
 
     /**
@@ -127,14 +127,11 @@ class Connector
 
         $pdo = $this->getConnection()->getPDO();
 
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-        $adapterOptions = $this->options +
-        [
+        $adapterOptions = $this->options + [
             'connection' => $pdo,
             'name'       => $this->getDatabaseName(),
         ];
-        
+
         $adapterDrive = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         return AdapterFactory::instance()->getAdapter($adapterDrive, $adapterOptions);
