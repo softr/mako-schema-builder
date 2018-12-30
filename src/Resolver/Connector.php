@@ -111,8 +111,9 @@ class Connector
         $query = $this->getConnection()->getPDO()->query('SELECT DATABASE()');
 
         $database = $query->fetch();
+        $database = array_values($database);
 
-        return $database->{'DATABASE()'};
+        return $database[0];
     }
 
     /**
@@ -126,6 +127,8 @@ class Connector
         // PDO Instance
 
         $pdo = $this->getConnection()->getPDO();
+
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         $adapterOptions = $this->options + [
             'connection' => $pdo,
